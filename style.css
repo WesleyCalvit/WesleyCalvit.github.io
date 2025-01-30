@@ -1,8 +1,8 @@
 body {
-    background: rgb(210, 106, 210);
-    color: rgb(45, 45, 45);
+    background: #d26ad2;
+    color: rgba(45, 45, 45, 0.776);
     padding: 10px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #all-contents {
@@ -16,12 +16,13 @@ nav {
     margin: 0 auto;
     display: flex;
     padding: 10px;
+    border-radius: 10px;
 }
 
 h1 {
     display: flex;
     align-items: center;
-    color: rgb(151, 150, 150);
+    color: rgb(0, 0, 0);
     flex: 1;
     margin: 0;
 }
@@ -40,7 +41,7 @@ h1 {
 
 a {
     text-decoration: none;
-    color: #969494;
+    color: #000000;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
@@ -49,6 +50,7 @@ main {
     background: rgb(221, 221, 220);
     display: flex;
     margin-top: 20px;
+    border-radius:10px
 }
 
 .sidebar {
@@ -65,11 +67,16 @@ main {
     padding: 15px;
 }
 
+#ititle{
+  text-align:center
+}
+
 /* interests section styles */
 #interests {
     border: 4px silver ridge;
     padding: 8px;
     margin-top: 20px;
+    text-align: left;
 }
 #schedule{
     border: 4px silver ridge;
