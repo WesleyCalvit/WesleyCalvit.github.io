@@ -93,8 +93,8 @@ let animationDetails = {};
 
 var collectableList = {
   database: { image: "images/collectables/database.png" },
-  diamond: { image: "images/collectables/diamond-head.png" },
-  grace: { image: "images/collectables/grace-head.png" },
+  diamond: { image: "https://www.wilsonsd.org/wp-content/uploads/2020/01/kissclipart-cartoon-diamond-png-clipart-clip-art-1c41c8a32e5cbe40.jpg" },
+  coin: { image: "https://pngimg.com/d/coin_PNG36871.png" },
   kennedi: { image: "images/collectables/kennedi-head.png" },
   max: { image: "images/collectables/max-head.png" },
   steve: { image: "images/collectables/steve-head.png" },
