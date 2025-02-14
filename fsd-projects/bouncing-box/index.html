@@ -23,6 +23,44 @@
 		.board {
 			height: 100vh;
 		}
+		.box2{
+			width: 200px;
+			height: 80px;
+			background-color: red;
+			font-size: 300%;
+			display: block;
+			position: absolute;
+			text-align: center;
+			top: 700px;
+			left: 0px;
+		}
+		/*.box3 {
+			width: 70px;
+			height: 70px;
+			background-color: teal;
+			font-size: 300%;
+			text-align: center;
+			user-select: none;
+			display: block;
+			position: absolute;
+			top: 200px;
+			/* Change me! 
+			left: 0px;
+		} */
+		/*.box4 {
+			width: 70px;
+			height: 70px;
+			background-color: teal;
+			font-size: 300%;
+			text-align: center;
+			user-select: none;
+			display: block;
+			position: absolute;
+			top: 300px;
+			/* Change me! */
+			/*left: 0px;
+		}*/
+
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 
@@ -31,7 +69,9 @@
 <body class="board">
 	<!-- HTML for the box -->
 	<div class="box">?</div>
-
+	<div class = "box2">Reset</div>
+	<div class = "box3"></div>
+	<div class = "box4"></div>
 	<script>
 		(function () {
 			'use strict'
@@ -44,21 +84,33 @@
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+			var boardHeight = board.height();
+			var box2 = jQuery('.box2');
+			//var box3 = jQuery('.box3');
+			//var box4 = jQuery('.box4');
+			
 
 			// Every 50 milliseconds, call the update Function (see below)
 			setInterval(update, 50);
 
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
+			//box3.on('click', handleBoxClick);
+			//box4.on('click', handleBoxClick);
+			box2.on('click', speedReset);
 
 			// moves the Box to a new position on the screen along the X-Axis
-			function moveBoxTo(newPositionX) {
-				box.css("left", newPositionX);
+			function moveBoxTo(newPositionX, newPositionY) {
+				box.css("left", newPositionX, newPositionY);
+				//box3.css("top", newPositionX, newPositionY);
+				//box4.css("left", newPositionX, newPositionY);
 			}
 
 			// changes the text displayed on the Box
 			function changeBoxText(newText) {
 				box.text(newText);
+				//box3.text(newText);
+				//box4.text(newText);
 			}
 
 			//////////////////////////////////////////////////////////////////
@@ -66,7 +118,14 @@
 			//////////////////////////////////////////////////////////////////
 
 			// TODO 2 - Variable declarations 
-
+			moveBoxTo(boardWidth);
+			//moveBoxTo(boardHeight);
+			
+			var positionX = 0;
+			var positionY = 0;
+			var points = 0;
+			var speedX = 10;
+			//var speedY = 10;
 
 
 			/* 
@@ -75,8 +134,23 @@
 			turn it around! 
 			*/
 			function update() {
-
-
+				positionX = positionX + speedX;
+				moveBoxTo(positionX);
+				
+				if (positionX > boardWidth){
+					speedX = speedX * -1;
+				}
+				if(positionX < 0){
+					speedX = speedX * -1;
+				}
+				//positionY = positionY + speedY;
+				//moveBoxTo(positionY);
+				//if (positionY > boardHeight){
+					//speedY = speedY * -1;
+				//}
+				//if(positionY < 0){
+					//speedY = speedY * -1;
+				//}
 			};
 
 			/* 
@@ -85,9 +159,18 @@
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-
+				points = points + 1;
+				changeBoxText(points);
+				speedX = 3 * points + 10;
+				speedX = -speedX
 
 			};
+			function speedReset(){
+				speedX = 10;
+				points = 0;
+				changeBoxText(points);
+				positionX = 0;
+			}
 
 
 
