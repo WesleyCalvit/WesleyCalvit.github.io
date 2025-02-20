@@ -9,15 +9,17 @@
 		.box {
 			width: 70px;
 			height: 70px;
-			background-color: teal;
+			background-color: rgb(169, 255, 8);
 			font-size: 300%;
 			text-align: center;
 			user-select: none;
 			display: block;
+			border-radius: 80px;
 			position: absolute;
 			top: 100px;
 			/* Change me! */
 			left: 0px;
+
 		}
 
 		.board {
@@ -31,7 +33,7 @@
 			display: block;
 			position: absolute;
 			text-align: center;
-			top: 700px;
+			top: 850px;
 			left: 0px;
 		}
 		/*.box3 {
@@ -68,10 +70,13 @@
 
 <body class="board">
 	<!-- HTML for the box -->
-	<div class="box">?</div>
+	<div class="box">?
+		
+	</div>
 	<div class = "box2">Reset</div>
 	<div class = "box3"></div>
 	<div class = "box4"></div>
+	<img src = "https://static.vecteezy.com/system/resources/thumbnails/003/440/439/small_2x/tennis-court-top-view-vector.jpg", width = 1900>
 	<script>
 		(function () {
 			'use strict'
@@ -84,6 +89,7 @@
 			var box = jQuery('.box');	// reference to the HTML .box element
 			var board = jQuery('.board');	// reference to the HTML .board element
 			var boardWidth = board.width();	// the maximum X-Coordinate of the screen
+			var boardHeight = jQuery(window).height();
 			var boardHeight = board.height();
 			var box2 = jQuery('.box2');
 			//var box3 = jQuery('.box3');
@@ -101,7 +107,8 @@
 
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX, newPositionY) {
-				box.css("left", newPositionX, newPositionY);
+				box.css("left", newPositionX);
+				box.css("top", newPositionY);
 				//box3.css("top", newPositionX, newPositionY);
 				//box4.css("left", newPositionX, newPositionY);
 			}
@@ -118,14 +125,13 @@
 			//////////////////////////////////////////////////////////////////
 
 			// TODO 2 - Variable declarations 
-			moveBoxTo(boardWidth);
-			//moveBoxTo(boardHeight);
+			moveBoxTo(boardWidth, boardHeight);
 			
 			var positionX = 0;
 			var positionY = 0;
 			var points = 0;
 			var speedX = 10;
-			//var speedY = 10;
+			var speedY = 10;
 
 
 			/* 
@@ -135,22 +141,21 @@
 			*/
 			function update() {
 				positionX = positionX + speedX;
-				moveBoxTo(positionX);
-				
+				positionY = positionY + speedY;
+				moveBoxTo(positionX, positionY);
 				if (positionX > boardWidth){
 					speedX = speedX * -1;
 				}
 				if(positionX < 0){
 					speedX = speedX * -1;
 				}
-				//positionY = positionY + speedY;
-				//moveBoxTo(positionY);
-				//if (positionY > boardHeight){
-					//speedY = speedY * -1;
-				//}
-				//if(positionY < 0){
-					//speedY = speedY * -1;
-				//}
+				
+				if (positionY > boardHeight){
+					speedY = speedY * -1;
+				}
+				if(positionY < 0){
+					speedY = speedY * -1;
+				}
 			};
 
 			/* 
