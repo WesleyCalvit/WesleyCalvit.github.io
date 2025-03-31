@@ -28,6 +28,10 @@ var background = function (window) {
         //////////////////////////////////////////////////////////////////
         // ANIMATION VARIABLES HERE //////////////////////////////////////
         //////////////////////////////////////////////////////////////////
+        var post;
+        var buildings = [];
+        var buildings2 = [];
+
         // TODO (several):
       
       
@@ -39,16 +43,47 @@ var background = function (window) {
             // TODO 1:
             // this currently fills the background with an obnoxious yellow;
             // you should modify both the height and color to suit your game
-            var backgroundFill = draw.rect(canvasWidth,canvasHeight,'yellow');
+            var backgroundFill = draw.rect(canvasWidth,groundY,'orange');
             background.addChild(backgroundFill);
             
             // TODO 2: - Add a moon and starfield
+            var moon = draw.bitmap("https://bitacolor.ro/wp-content/uploads/revslider/parallax_slider/sun.png");
+            moon.x = 825;
+            moon.y = -200;
+            moon.scaleX = 1.5;
+            moon.scaleY = 1.5;
+            background.addChild(moon);
+            
             
             
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
-            
+            for (var i = 0; i < 50; ++i) {
+                var buildingHeight = Math.random() * 1000
+                var building = draw.rect(75, buildingHeight, "DarkRed", "Black", 1);
+                building.x = 100 * i;
+                building.y = groundY - buildingHeight;
+                background.addChild(building);
+                buildings.push(building);
+              }
+              for (var i = 0; i < 20; ++i) {
+                var buildings2Height = Math.random() * 200
+                var building2 = draw.rect(75, buildings2Height, "DarkOrange", "Black", 1);
+                building2.x = 100 * i;
+                building2.y = groundY - buildings2Height;
+                background.addChild(building2);
+                buildings2.push(building2);
+              }
+
+              
+              
             
             // TODO 3: Part 1 - Add a tree
+            post = draw.bitmap("https://spaces-cdn.clipsafari.com/und8yux76p5oc57hw0b2oy538hbr");
+            post.x = 0;
+            post.y = groundY/2 - 80 ;
+            post.scaleX = 0.15
+            post.scaleY = 0.125  
+            background.addChild(post);
             
             
         } // end of render function - DO NOT DELETE
@@ -63,10 +98,32 @@ var background = function (window) {
             var groundY = ground.y;
             
             // TODO 3: Part 2 - Move the tree!
-            
+            post.x = post.x - 3;
+            if (post.x < -200) {
+            post.x = canvasWidth;
+}
             
             // TODO 4: Part 2 - Parallax
             
+            for (var i = 0; i < buildings.length; i++) {
+                buildings[i].x = buildings[i].x - 1
+                var eachBuilding = buildings[i]
+                
+                if(eachBuilding.x < -100){
+                    buildings[i].x = 2000;
+                }
+    
+              }
+
+              for (var i = 0; i < buildings2.length; i++) {
+                buildings2[i].x = buildings2[i].x - 2
+                var eachBuilding2 = buildings2[i]
+                
+                if(eachBuilding2.x < -100){
+                    buildings2[i].x = 2000;
+                }
+    
+              }
 
         } // end of update function - DO NOT DELETE
         
