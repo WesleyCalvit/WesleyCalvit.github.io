@@ -25,11 +25,14 @@ var runLevels = function (window) {
     var sawBladeHitZone = game.createObstacle(hitZoneSize, damageFromObstacle);
     sawBladeHitZone.x = x;
     sawBladeHitZone.y = y;
+    sawBladeHitZone.rotationalVelocity = 4;
     game.addGameItem(sawBladeHitZone);
     var obstacleImage = draw.bitmap("img/sawblade.png");
-    obstacleImage.x = -25
-    obstacleImage.y = -25
+    obstacleImage.x = -25;
+    obstacleImage.y = -25;
+    obstacleImage.rotationalVelocity = 4;
     sawBladeHitZone.addChild(obstacleImage);
+    
     }
 
   
@@ -67,7 +70,7 @@ var runLevels = function (window) {
     reward.velocityX = -2;
     reward.rotationalVelocity = 2;
     reward.onPlayerCollision = function () {
-    game.changeIntegrity(20)
+    game.changeIntegrity(20);
     game.increaseScore(100);
     reward.fadeOut();
     };
@@ -79,14 +82,14 @@ var runLevels = function (window) {
 
   function createMarker(x,y){
     var marker = game.createGameItem("marker", 25);
-    var greenSquare = draw.rect(50, 50, "green");
-    greenSquare.x = -25;
-    greenSquare.y = -25;
-    marker.addChild(greenSquare);
+    var yellowSquare = draw.rect(50, 50, "yellow");
+    yellowSquare.x = -25;
+    yellowSquare.y = -25;
+    marker.addChild(yellowSquare);
     marker.x = x;
     marker.y = y;
     marker.velocityX = -1;
-    marker.rotationalVelocity = 1
+    marker.rotationalVelocity = 1;
     game.addGameItem(marker);
     marker.onProjectileCollision = function(){
       marker.fadeOut();
@@ -102,7 +105,7 @@ var runLevels = function (window) {
     function startLevel() {
       // TODO 13 goes below here
       var level = levelData[currentLevel];
-      var levelObjects = level.gameItems
+      var levelObjects = level.gameItems;
 
       for(i = 0; i < levelObjects.length; i++){
         var element = levelObjects[i];

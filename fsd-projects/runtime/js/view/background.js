@@ -31,6 +31,7 @@ var background = function (window) {
         var post;
         var buildings = [];
         var buildings2 = [];
+        var buildings3 = [];
 
         // TODO (several):
       
@@ -43,9 +44,13 @@ var background = function (window) {
             // TODO 1:
             // this currently fills the background with an obnoxious yellow;
             // you should modify both the height and color to suit your game
-            var backgroundFill = draw.rect(canvasWidth,groundY,'orange');
-            background.addChild(backgroundFill);
-            
+            //var backgroundFill = draw.rect(canvasWidth,groundY,'orange');
+            //background.addChild(backgroundFill);
+            var backgroundImage = draw.bitmap("https://static.vecteezy.com/system/resources/previews/004/478/338/non_2x/background-with-red-planet-and-mountains-with-water-dawn-in-space-the-sun-on-the-horizon-cartoon-illustration-vector.jpg");
+            background.addChild(backgroundImage);
+            var groundColor = draw.rect(canvasWidth, canvasHeight/2, "brown");
+            background.addChild(groundColor);
+            groundColor.y = groundY;
             // TODO 2: - Add a moon and starfield
             var moon = draw.bitmap("https://bitacolor.ro/wp-content/uploads/revslider/parallax_slider/sun.png");
             moon.x = 825;
@@ -57,9 +62,20 @@ var background = function (window) {
             
             
             // TODO 4: Part 1 - Add buildings!     Q: This is before TODO 4 for a reason! Why?
+
+            for (var i = 0; i < 13; ++i) {
+                var buildings3Height = Math.random() * 400
+                var building3 = draw.rect(75, buildings3Height, "Brown", "Brown", 1);
+                building3.y = groundY - buildings3Height;
+                building3.x = 125 * i
+                background.addChild(building3);
+                buildings3.push(building3);
+              }
+
+
             for (var i = 0; i < 13; ++i) {
                 var buildingHeight = 150 + Math.random() * 100
-                var building = draw.rect(75, buildingHeight, "DarkRed", "Black", 1);
+                var building = draw.rect(75, buildingHeight, "DarkRed", "DarkRed", 1);
                 building.x = 100 * i;
                 building.y = groundY - buildingHeight;
                 background.addChild(building);
@@ -67,12 +83,14 @@ var background = function (window) {
             }
               for (var i = 0; i < 13; ++i) {
                 var buildings2Height = Math.random() * 200
-                var building2 = draw.rect(75, buildings2Height, "DarkOrange", "Black", 1);
+                var building2 = draw.rect(75, buildings2Height, "DarkOrange", "DarkOrange", 1);
                 building2.x = 100 * i;
                 building2.y = groundY - buildings2Height;
                 background.addChild(building2);
                 buildings2.push(building2);
               }
+
+              
 
               
               
@@ -121,6 +139,16 @@ var background = function (window) {
                 
                 if(eachBuilding2.x < -100){
                     buildings2[i].x = canvasWidth;
+                }
+    
+              }
+
+              for (var i = 0; i < buildings3.length; i++) {
+                buildings3[i].x = buildings3[i].x - 0.5
+                var eachBuilding3 = buildings3[i]
+                
+                if(eachBuilding3.x < -100){
+                    buildings3[i].x = canvasWidth;
                 }
     
               }
